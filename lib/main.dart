@@ -50,7 +50,9 @@ class _MyAppState extends State<MyApp> {
         ],
         child: MaterialApp(
           title: 'Pure Veils',
+
           theme: ThemeData(
+            primarySwatch: Colors.red,
             appBarTheme: AppBarTheme(
                 color: Colors.white,
                 iconTheme: IconThemeData(
@@ -115,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Center(
                 child: Text(
               "Total: " + profit.profit,
-              style: TextStyle(color: Colors.black, fontSize: 15),
+              style: TextStyle(color: Color(0xffB00020), fontSize: 15),
             )),
           )
         ],
@@ -137,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 15,
         child: Icon(
           Icons.add,
-          color: Colors.black,
+          color: Color(0xffB00020),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
@@ -177,8 +179,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.white,
                   child: Icon(
                     Icons.calendar_today,
-                    size: 18,
-                    color: Color(0xffF8BBD0),
+                    size: 22,
+                    color: Color(0xffB00020)
                   ),
                 ),
               )

@@ -164,7 +164,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: null,
-          backgroundColor: Color(0xffF8BBD0),
+          backgroundColor: Color(0xffB00020),
           label: Text(
             'Total: ' + _orderTotal.toString(),
             style: TextStyle(
@@ -191,7 +191,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 15.0,
-                            fontFamily: "Nunito",
+                            fontFamily: "Bodoni",
                             fontWeight: FontWeight.bold),
                       ),
                       TextFormField(
@@ -204,7 +204,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                             suffixIcon: Icon(
                               Icons.group,
                               size: 20,
-                              color: Colors.black,
+                              color: Color(0xffB00020),
                             ),
                             border: UnderlineInputBorder(
                                 borderSide: new BorderSide(color: Colors.grey)),
@@ -222,7 +222,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 15.0,
-                            fontFamily: "Nunito",
+                            fontFamily: "Bodoni",
                             fontWeight: FontWeight.bold),
                       ),
                       TextFormField(
@@ -235,7 +235,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                             suffixIcon: Icon(
                               Icons.place,
                               size: 20,
-                              color: Colors.black,
+                              color: Color(0xffB00020),
                             ),
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: new BorderSide(color: Colors.grey)),
@@ -330,6 +330,10 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                   ],
                                 ),
                               ),
+                              Divider(
+                                color: Colors.grey[300],
+                                thickness: 1,
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -397,6 +401,10 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                   ],
                                 ),
                               ),
+                              Divider(
+                                color: Colors.grey[300],
+                                thickness: 1,
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -461,6 +469,10 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                     ),
                                   ],
                                 ),
+                              ),
+                              Divider(
+                                color: Colors.grey[300],
+                                thickness: 1,
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -527,38 +539,42 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                   ],
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text("Delivery Charge"),
-                                  SizedBox(
-                                    width: 30,
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        _deliveryCount != 0
-                                            ? new IconButton(
-                                                icon: new Icon(Icons.remove),
-                                                onPressed: () {
-                                                  setState(
-                                                      () => _deliveryCount--);
-                                                  _deductOrderTotal("delivery");
-                                                })
-                                            : new Container(),
-                                        new Text(_deliveryCount.toString()),
-                                        new IconButton(
-                                            icon: new Icon(Icons.add),
-                                            onPressed: () {
-                                              setState(() => _deliveryCount++);
-                                              _updateOrderTotal("delivery");
-                                            })
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                              Divider(
+                                color: Colors.grey[300],
+                                thickness: 1,
                               ),
+//                              Row(
+//                                mainAxisAlignment:
+//                                    MainAxisAlignment.spaceBetween,
+//                                children: <Widget>[
+//                                  Text("Delivery Charge"),
+//                                  SizedBox(
+//                                    width: 30,
+//                                  ),
+//                                  Container(
+//                                    child: Row(
+//                                      children: [
+//                                        _deliveryCount != 0
+//                                            ? new IconButton(
+//                                                icon: new Icon(Icons.remove),
+//                                                onPressed: () {
+//                                                  setState(
+//                                                      () => _deliveryCount--);
+//                                                  _deductOrderTotal("delivery");
+//                                                })
+//                                            : new Container(),
+//                                        new Text(_deliveryCount.toString()),
+//                                        new IconButton(
+//                                            icon: new Icon(Icons.add),
+//                                            onPressed: () {
+//                                              setState(() => _deliveryCount++);
+//                                              _updateOrderTotal("delivery");
+//                                            })
+//                                      ],
+//                                    ),
+//                                  ),
+//                                ],
+//                              ),
                             ],
                           ),
                         ),
