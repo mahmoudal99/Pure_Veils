@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class Order {
   String orderID;
   String customerName;
-  String phoneNumber;
   String address;
   String dateTime;
   double orderPrice;
@@ -16,7 +15,6 @@ class Order {
       {this.orderID,
       this.address,
       this.customerName,
-      this.phoneNumber,
       this.dateTime,
       this.orderPrice,
       this.isPaid,
@@ -29,7 +27,6 @@ class Order {
     return Order(
       orderID: id,
       customerName: data['customerName'],
-      phoneNumber: data['phoneNumber'],
       address: data['address'],
       dateTime: data['dateTime'],
       orderPrice: data['orderPrice'],

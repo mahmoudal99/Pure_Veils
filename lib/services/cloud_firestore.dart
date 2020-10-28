@@ -16,7 +16,6 @@ class CloudFirestore {
         .set({
       "customerName": order.customerName,
       "address": order.address,
-      "phoneNumber": order.phoneNumber,
       "dateTime": order.dateTime,
       "orderPrice": order.orderPrice,
       "isPaid": order.isPaid,

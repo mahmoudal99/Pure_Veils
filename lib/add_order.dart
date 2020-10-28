@@ -25,15 +25,18 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
   bool isPaid = true;
   var _paymentIndex = 1;
   int _chiffonCount = 0;
+  int _chiffonDealCount = 0;
   int _crinkleCount = 0;
+  int _crinkleDealCount = 0;
   int _rayonCount = 0;
+  int _rayonDealCount = 0;
   int _modalCount = 0;
+  int _modalDealCount = 0;
   int _deliveryCount = 0;
   double _orderTotal = 0;
   final _formKey = GlobalKey<FormState>();
   TextEditingController _nameController = new TextEditingController();
   TextEditingController _addressController = new TextEditingController();
-  TextEditingController _phoneController = new TextEditingController();
 
   @override
   void initState() {
@@ -46,15 +49,25 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
     if (orderType.contains('chiffon')) {
       setState(() {
         _orderTotal += 5.99;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
       });
     } else if (orderType.contains('crinkle')) {
       setState(() {
         _orderTotal += 5.50;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
       });
     } else if (orderType.contains("rayon")) {
-      _orderTotal += 9.99;
+      setState(() {
+        _orderTotal += 9.99;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+
     } else if (orderType.contains("modal")) {
-      _orderTotal += 4.99;
+      setState(() {
+        _orderTotal += 4.99;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+
     }
   }
 
@@ -62,15 +75,77 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
     if (orderType.contains('chiffon')) {
       setState(() {
         _orderTotal -= 5.99;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
       });
     } else if (orderType.contains('crinkle')) {
       setState(() {
         _orderTotal -= 5.50;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
       });
     } else if (orderType.contains("rayon")) {
-      _orderTotal -= 9.99;
+      setState(() {
+        _orderTotal -= 9.99;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+
     } else if (orderType.contains("modal")) {
-      _orderTotal -= 4.99;
+      setState(() {
+        _orderTotal -= 4.99;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+
+    }
+  }
+
+  void _addDeal(String orderType) {
+    if (orderType.contains('chiffon_deal')) {
+      setState(() {
+        _orderTotal += 20.00;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+    } else if (orderType.contains('crinkle_deal')) {
+      setState(() {
+        _orderTotal += 15.00;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+    } else if (orderType.contains("rayon_deal")) {
+      setState(() {
+        _orderTotal += 16.99;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+
+    } else if (orderType.contains("modal_deal")) {
+      setState(() {
+        _orderTotal += 12.50;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+
+    }
+  }
+
+  void _deductDeal(String orderType) {
+    if (orderType.contains('chiffon_deal')) {
+      setState(() {
+        _orderTotal -= 20.00;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+    } else if (orderType.contains('crinkle_deal')) {
+      setState(() {
+        _orderTotal -= 15.00;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+    } else if (orderType.contains("rayon_deal")) {
+      setState(() {
+        _orderTotal -= 16.99;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+
+    } else if (orderType.contains("modal_deal")) {
+      setState(() {
+        _orderTotal -= 12.50;
+        _orderTotal = double.parse(_orderTotal.toStringAsFixed(2));
+      });
+
     }
   }
 
@@ -93,7 +168,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
           label: Text(
             'Total: ' + _orderTotal.toString(),
             style: TextStyle(
-                color: Colors.white, fontFamily: "Bodoni", fontSize: 16),
+                color: Colors.white, fontFamily: "Bodoni", fontSize: 16,),
           )),
       body: Stack(
         children: [
@@ -141,36 +216,7 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                       SizedBox(
                         height: 30,
                       ),
-                      Text(
-                        "Phone",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15.0,
-                            fontFamily: "Nunito",
-                            fontWeight: FontWeight.bold),
-                      ),
-                      TextFormField(
-                        maxLines: 1,
-                        keyboardType: TextInputType.phone,
-                        controller: _phoneController,
-                        validator: (val) => val.isEmpty ? "+353" : null,
-                        cursorColor: Colors.black,
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(
-                              Icons.phone,
-                              size: 20,
-                              color: Colors.black,
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                                borderSide: new BorderSide(color: Colors.grey)),
-                            hintText: '+353',
-                            hintStyle:
-                                TextStyle(fontSize: 14.0, color: Colors.grey),
-                            labelStyle: TextStyle(color: Colors.black)),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
+
                       Text(
                         "Address",
                         style: TextStyle(
@@ -249,6 +295,41 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                   ),
                                 ],
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("Chiffon Deal"),
+                                    SizedBox(
+                                      width: 30,
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          _chiffonDealCount != 0
+                                              ? new IconButton(
+                                              icon: new Icon(Icons.remove),
+                                              onPressed: () {
+                                                setState(
+                                                        () => _chiffonDealCount--);
+                                                _deductDeal("chiffon_deal");
+                                              })
+                                              : new Container(),
+                                          new Text(_chiffonDealCount.toString()),
+                                          new IconButton(
+                                              icon: new Icon(Icons.add),
+                                              onPressed: () {
+                                                setState(() => _chiffonDealCount++);
+                                                _addDeal('chiffon_deal');
+                                              })
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -281,6 +362,41 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                   ),
                                 ],
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("Cotton Crinkle Deal"),
+                                    SizedBox(
+                                      width: 30,
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          _crinkleDealCount != 0
+                                              ? new IconButton(
+                                              icon: new Icon(Icons.remove),
+                                              onPressed: () {
+                                                setState(
+                                                        () => _crinkleDealCount--);
+                                                _deductDeal("crinkle_deal");
+                                              })
+                                              : new Container(),
+                                          new Text(_crinkleDealCount.toString()),
+                                          new IconButton(
+                                              icon: new Icon(Icons.add),
+                                              onPressed: () {
+                                                setState(() => _crinkleDealCount++);
+                                                _addDeal("crinkle_deal");
+                                              })
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -312,6 +428,40 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                   ),
                                 ],
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("Rayon Deal"),
+                                    SizedBox(
+                                      width: 30,
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          _rayonDealCount != 0
+                                              ? new IconButton(
+                                              icon: new Icon(Icons.remove),
+                                              onPressed: () {
+                                                setState(() => _rayonDealCount--);
+                                                _deductDeal("rayon_deal");
+                                              })
+                                              : new Container(),
+                                          new Text(_rayonDealCount.toString()),
+                                          new IconButton(
+                                              icon: new Icon(Icons.add),
+                                              onPressed: () {
+                                                setState(() => _rayonDealCount++);
+                                                _addDeal("rayon_deal");
+                                              })
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -342,6 +492,40 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                     ),
                                   ),
                                 ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("Modal Deal"),
+                                    SizedBox(
+                                      width: 30,
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          _modalDealCount != 0
+                                              ? new IconButton(
+                                              icon: new Icon(Icons.remove),
+                                              onPressed: () {
+                                                setState(() => _modalDealCount--);
+                                                _deductDeal("modal_deal");
+                                              })
+                                              : new Container(),
+                                          new Text(_modalDealCount.toString()),
+                                          new IconButton(
+                                              icon: new Icon(Icons.add),
+                                              onPressed: () {
+                                                setState(() => _modalDealCount++);
+                                                _addDeal("modal_deal");
+                                              })
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -494,8 +678,6 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                             customerName:
                                                 _nameController.text.toString(),
                                             address: _addressController.text
-                                                .toString(),
-                                            phoneNumber: _phoneController.text
                                                 .toString(),
                                             dateTime:
                                                 widget.dateTime.day.toString(),
