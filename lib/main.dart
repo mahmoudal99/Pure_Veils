@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Pure Veils'),
+      home: MyHomePage(title: 'Pure Veils',),
     );
   }
 }
@@ -43,9 +43,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           widget.title,
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black, fontFamily: "Bodoni", fontSize: 28),
         ),
         elevation: 0,
       ),
