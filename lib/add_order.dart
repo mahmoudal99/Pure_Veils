@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pure_veils/services/cloud_firestore.dart';
+
+import 'main.dart';
+import 'models/order.dart';
 
 class CreateOrderScreen extends StatefulWidget {
   DateTime dateTime;
@@ -13,7 +17,7 @@ class CreateOrderScreen extends StatefulWidget {
 }
 
 class _CreateOrderScreenState extends State<CreateOrderScreen> {
-//  CloudFirestore cloudFirestore = new CloudFirestore();
+  CloudFirestore cloudFirestore = new CloudFirestore();
 
   DateTime pickedDate;
   TimeOfDay time;
@@ -82,7 +86,6 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
         ),
         elevation: 0,
         backgroundColor: Colors.white,
-
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: null,
@@ -485,40 +488,47 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
                                       RegExp('TimeOfDay'), '');
                                   orderTime = orderTime.replaceAll(
                                       RegExp("[\\[\\](){}]"), "");
-//                                  dynamic result = await cloudFirestore
-//                                      .addOrder(new Order(
-//                                    customerName:
-//                                    _nameController.text.toString(),
-//                                    address:
-//                                    _addressController.text.toString(),
-//                                    phoneNumber: _phoneController.text.toString(),
-//                                    timeOfDay: orderTime,
-//                                    dateTime: widget.dateTime.day.toString(),
-//                                    isPaid: isPaid,
-//                                    orderPrice: _orderTotal,
-//                                    paymentType: _paymentIndex == 1
-//                                        ? "Card"
-//                                        : "Cash",
-//                                    orderComplete:  false,
-//                                    orderDesc: "Large Kanafehs: " +
-//                                        _largeCount.toString() +
-//                                        "\nSmall Kanafehs: " +
-//                                        _smallCount.toString() +
-//                                        "\nIndividual Kanafehs: " +
-//                                        _individualCount.toString(),
-//                                  ), widget.dateTime.month.toString())
-//                                      .whenComplete(() => {
-//                                    Navigator.push(
-//                                        context,
-//                                        PageTransition(
-//                                            type: PageTransitionType
-//                                                .rightToLeft,
-//                                            child: MyApp(dateTime: widget.dateTime,),
-//                                            inheritTheme: false,
-//                                            duration: Duration(
-//                                                milliseconds: 450),
-//                                            ctx: context))
-//                                  });
+                                  dynamic result = await cloudFirestore
+                                      .addOrder(
+                                          new Order(
+                                            customerName:
+                                                _nameController.text.toString(),
+                                            address: _addressController.text
+                                                .toString(),
+                                            phoneNumber: _phoneController.text
+                                                .toString(),
+                                            dateTime:
+                                                widget.dateTime.day.toString(),
+                                            isPaid: isPaid,
+                                            orderPrice: _orderTotal,
+                                            paymentType: _paymentIndex == 1
+                                                ? "Card"
+                                                : "Cash",
+                                            orderComplete: false,
+                                            orderDesc: "Chiffon: " +
+                                                _chiffonCount.toString() +
+                                                "\nCotton Crinkle: " +
+                                                _crinkleCount.toString() +
+                                                "\nRayon: " +
+                                                _rayonCount.toString() +
+                                                "\nModal: " +
+                                                _modalCount.toString(),
+                                          ),
+                                          widget.dateTime.month.toString())
+                                      .whenComplete(() => {
+                                            Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                    type: PageTransitionType
+                                                        .rightToLeft,
+                                                    child: MyApp(
+                                                      dateTime: widget.dateTime,
+                                                    ),
+                                                    inheritTheme: false,
+                                                    duration: Duration(
+                                                        milliseconds: 450),
+                                                    ctx: context))
+                                          });
                                 }
                               },
                             ),
