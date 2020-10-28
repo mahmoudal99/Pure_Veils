@@ -1,4 +1,4 @@
-# pure_veils
+# Pure Veils
 
 Application for Pure Veils business.
 
