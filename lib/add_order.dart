@@ -560,14 +560,4 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
     }
   }
 
-  _pickTime() async {
-    TimeOfDay timeOfDay =
-        await showTimePicker(context: context, initialTime: time);
-
-    if (timeOfDay != null) {
-      setState(() {
-        time = timeOfDay;
-      });
-    }
-  }
 }

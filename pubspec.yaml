@@ -58,7 +58,7 @@ flutter:
 
   assets:
     - assets/cash.png
-    - assets/delivery.png
+    - assets/delivery.jpg
     - assets/logo.png
     - assets/logo.jpg
 
