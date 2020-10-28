@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pure_veils/add_order.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,11 +12,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pure Veils',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(color: Colors.white),
+        appBarTheme: AppBarTheme(color: Colors.white,  iconTheme: IconThemeData(color: Colors.black,)),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Pure Veils',),
+      home: MyHomePage(
+        title: 'Pure Veils',
+      ),
     );
   }
 }
@@ -30,14 +33,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         title: Text(
           widget.title,
-          style: TextStyle(color: Colors.black, fontFamily: "Bodoni", fontSize: 28),
+          style: TextStyle(
+              color: Colors.black, fontFamily: "Bodoni", fontSize: 28),
         ),
         elevation: 0,
       ),
@@ -54,20 +50,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) => CreateOrderScreen()
+          ));
+        },
         backgroundColor: Colors.white,
         tooltip: 'Increment',
+        elevation: 15,
         child: Icon(
           Icons.add,
           color: Colors.black,
